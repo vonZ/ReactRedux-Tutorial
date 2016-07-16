@@ -1,12 +1,12 @@
 /*
 	- ACTIONS -
-	
+
 Actions are plain objects describing what happened in the app, and server as the sole way to describe
-an intention to mutate the data. 
+an intention to mutate the data.
 
 Payloads of information that send data from your application to your store. They are
 the _only_ source of information for the store. You send them to the store using store.dispatch()
-	
+
 */
 
 
@@ -20,7 +20,7 @@ the _only_ source of information for the store. You send them to the store using
 
 let nextToDoId = 0
 
-export addTodo = (text) => {
+export const addTodo = (text) => {
 	return {
 		type: ADD_TODO,
 		id: nextToDoId++,
@@ -28,14 +28,14 @@ export addTodo = (text) => {
 	}
 }
 
-export setVisibilityFilter = (filter) => {
+export const setVisibilityFilter = (filter) => {
 	return {
 		type: SET_VISIBILITY_FILTER,
 		filter
 	}
 }
 
-export toggleTodo = (id) => {
+export const toggleTodo = (id) => {
 	return {
 		type: TOGGLE_TODO,
 		id

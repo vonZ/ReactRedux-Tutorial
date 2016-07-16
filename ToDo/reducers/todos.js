@@ -27,8 +27,8 @@ const todo = (state, action) => {
 				completed: !state.completed
 			})
 
-		default: 
-			return: state
+		default:
+			return state
 	}
 
 }
@@ -44,8 +44,8 @@ const todos = (state = [], action) => {
 			return state.map(t =>
 				todo(t, action)
 			)
-		default: 
-			return: state
+		default:
+			return state
 	}
 }
 
