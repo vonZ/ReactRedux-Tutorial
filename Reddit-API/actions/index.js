@@ -1,4 +1,4 @@
-import fetch from from 'ismorphic-fetch'
+import fetch from 'isomorphic-fetch'
 
 /*
  * action types - can be separated in other file
@@ -24,7 +24,7 @@ export function selectSubreddit(subreddit) {
 //Detect if the subreddit is invalid. Used with a refresh button
 export function invalidateSubreddit(subreddit) {
   return {
-    type: REQUEST_POST,
+    type: INVALIDATE_SUBREDDIT,
     subreddit
   }
 }
@@ -32,7 +32,7 @@ export function invalidateSubreddit(subreddit) {
 //When it´s time reequest a subreddit
 export function requestPosts(subreddit) {
   return {
-    type: REQUEST_POST,
+    type: REQUEST_POSTS,
     subreddit
   }
 }

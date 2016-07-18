@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectSubreddit, fetchPostIfNeeded, invalidateSubreddit } from '../Actions/actions'
-import Picker from '../Components/Picker'
-import Posts from '../Components/Posts'
+import { selectSubreddit, fetchPostIfNeeded, invalidateSubreddit } from '../actions'
+import Picker from '../components/Picker'
+import Posts from '../components/Posts'
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -74,7 +74,7 @@ class AsyncApp extends Component {
 
 AsyncApp.propTypes = {
   selectedSubreddit: PropTypes.string.isRequired,
-  posts: PropTypes.bool.isRequired,
+  posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
