@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectSubreddit, fetchPostIfNeeded, invalidateSubreddit } from '../actions'
+import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
@@ -13,13 +13,13 @@ class AsyncApp extends Component {
 
   componentDidMount() {
     const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchPostIfNeeded(selectSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectSubreddit !== this.props.selectSubreddit) {
+    if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
       const { dispatch, selectedSubreddit } = nextProps
-      dispatch(fetchPostIfNeeded(selectedSubreddit))
+      dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
   }
 
@@ -30,9 +30,9 @@ class AsyncApp extends Component {
   handleRefreshClick(e) {
     e.preventDefault()
 
-    const { dispatch, selectSubreddit } = this.props
+    const { dispatch, selectedSubreddit } = this.props
     dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostIfNeeded(selectedSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
   }
 
   render() {
@@ -45,7 +45,7 @@ class AsyncApp extends Component {
         <p>
           {lastUpdated &&
             <span>
-              Last updated at {new Date(lastUpdated).toLocalTimeString()}.
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
               {' '}
             </span>
           }
@@ -60,10 +60,10 @@ class AsyncApp extends Component {
           <h2>Loading...</h2>
         }
         {!isFetching && posts.length === 0 &&
-          <h2>Empty</h2>
+          <h2>Empty.</h2>
         }
         {posts.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1}}>
+          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Posts posts={posts} />
           </div>
         }
@@ -88,7 +88,7 @@ function mapStateToProps(state) {
     items: posts
   } = postsBySubreddit[selectedSubreddit] || {
     isFetching: true,
-    item: []
+    items: []
   }
 
   return {
